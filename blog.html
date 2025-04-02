@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | StartupConnect - Business Registration Experts</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .contact-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .blog-posts {
+            flex: 0 0 70%;
+            padding-right: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .blog-posts {
+                flex: 0 0 100%;
+                padding-right: 0;
+            }
+        }
+        
+        .blog-card {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+        
+        .blog-card:last-child {
+            border-bottom: none;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            background-color: #f8f9fa;
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-title {
+            font-size: 24px;
+            margin: 10px 0;
+            color: var(--dark);
+        }
+        
+        .blog-excerpt {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--gray);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .blog-author {
+            font-weight: 600;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            flex: 0 0 30%;
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                flex: 0 0 100%;
+                margin-top: 40px;
+            }
+        }
+        
+        .sidebar-widget {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .widget-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--dark);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .category-list li {
+            margin-bottom: 10px;
+        }
+        
+        .category-list a {
+            text-decoration: none;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        
+        .category-list a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .category-count {
+            background-color: #e1f0fa;
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+            margin-top: 50px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="logo.jpg" alt="StartupConnect Logo" width="150">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Startup</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="blog.html">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link contact-btn" href="tel:+918447746183">
+                                <i class="fas fa-phone-alt"></i> +91 84477 46183
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> > <a href="blog.html">Blog</a>
+        </div>
+        
+        <div class="main-content">
+            <div class="blog-posts">
+                <article class="blog-card">
+                    <span class="blog-category">Company Registration</span>
+                    <h2 class="blog-title">One Person Company Can Be Registered As? Exploring OPC Structures and Requirements</h2>
+                    <p class="blog-excerpt">Learn the different types, compliance requirements, and why StartupConnect is the best choice for hassle-free OPC registration.</p>
+                    <div class="blog-meta">
+                        <span class="blog-author">By John Doe</span>
+                        <span class="blog-date">March 29, 2025 at 09:36 AM</span>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <span class="blog-category">Compliance</span>
+                    <h2 class="blog-title">Understanding Compliance for Private Limited Companies in India</h2>
+                    <p class="blog-excerpt">For Private Limited Companies in India, compliance is non-negotiable. It's the bedrock of your business's credibility and sustainability. This guide provides a clear roadmap to Indian company compliance.</p>
+                    <div class="blog-meta">
+                        <span class="blog-author">By Jane Smith</span>
+                        <span class="blog-date">March 29, 2025 at 08:26 AM</span>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <span class="blog-category">Government Schemes</span>
+                    <h2 class="blog-title">Government Schemes for Indian Startups in 2025</h2>
+                    <p class="blog-excerpt">Government schemes for startups in India play a crucial role in fostering economic growth and innovation. Discover the latest schemes and how to benefit from them.</p>
+                    <div class="blog-meta">
+                        <span class="blog-author">By Robert Johnson</span>
+                        <span class="blog-date">March 29, 2025 at 07:41 AM</span>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <span class="blog-category">OPC Compliance</span>
+                    <h2 class="blog-title">Mandatory OPC Compliance Requirements: Full Guide</h2>
+                    <p class="blog-excerpt">Welcome to our comprehensive guide on OPC Compliance for One Person Companies. Whether you're a budding entrepreneur or established business owner, this blog will guide you through every legal requirement.</p>
+                    <div class="blog-meta">
+                        <span class="blog-author">By John Doe</span>
+                        <span class="blog-date">March 29, 2025 at 07:05 AM</span>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="category-list">
+                        <li><a href="#">Accounting & Bookkeeping <span class="category-count">4</span></a></li>
+                        <li><a href="#">Business Tips <span class="category-count">12</span></a></li>
+                        <li><a href="#">Companies Act 2013 <span class="category-count">167</span></a></li>
+                        <li><a href="#">Company Conversion <span class="category-count">0</span></a></li>
+                        <li><a href="#">Company Law <span class="category-count">14</span></a></li>
+                        <li><a href="#">Company Registration <span class="category-count">53</span></a></li>
+                        <li><a href="#">Compliance <span class="category-count">5</span></a></li>
+                        <li><a href="#">GST <span class="category-count">80</span></a></li>
+                        <li><a href="#">Income Tax <span class="category-count">38</span></a></li>
+                        <li><a href="#">One Person Company <span class="category-count">18</span></a></li>
+                        <li><a href="#">See all categories →</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Subscribe to Newsletter</h3>
+                    <p>Get the latest business insights delivered to your inbox.</p>
+                    <form class="mt-3">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your email address" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About StartupConnect</h3>
+                    <p>As a leading technology-driven business services platform, we empower entrepreneurs and SMEs with seamless company registration, compliance, and growth solutions.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Private Limited Company</a></li>
+                        <li><a href="#">One Person Company</a></li>
+                        <li><a href="#">LLP Registration</a></li>
+                        <li><a href="#">Trademark Registration</a></li>
+                        <li><a href="#">GST Registration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Business Street, Mumbai, India 400001</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 84477 46183</p>
+                        <p><i class="fas fa-envelope"></i> info@startupconnect.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 StartupConnect. All Rights Reserved.
+            </div>
+            <div class="disclaimer">
+                StartupConnect is a facilitating platform connecting businesses with professional service providers. We are not a law firm and do not provide legal advice.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
